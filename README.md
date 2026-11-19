@@ -9,14 +9,14 @@ The game is plain files, but browsers block loading the question files if you ju
 
 **Option A — Node.** Node isn't installed on this PC's PATH, but Adobe Creative Cloud ships a copy that works (in PowerShell):
 ```
-cd "C:\Users\matth\OneDrive\Documents\Tinfoil the game"
+cd "path	oTinfoil the game"
 & "C:\Program Files\Adobe\Adobe Creative Cloud Experience\libs\node.exe" tools/serve.js
 ```
 If you install Node from nodejs.org, it's just `node tools/serve.js`.
 
 **Option B — Python** (if installed):
 ```
-cd "C:\Users\matth\OneDrive\Documents\Tinfoil the game"
+cd "path	oTinfoil the game"
 python -m http.server 8000
 ```
 
