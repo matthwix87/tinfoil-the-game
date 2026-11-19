@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pack checker</title>
+  <style>
+    body { font-family: ui-monospace, monospace; margin: 16px; background: #fff; color: #111; line-height: 1.5; }
+    .err { color: #b3122e; } .warn { color: #8a5a00; } .ok { color: #106b2b; }
+    h2 { margin-top: 1.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Pack checker</h1>
+  <p>Checks every pack listed in <code>data/packs/index.json</code> for mistakes. Reload this page after editing a pack.</p>
+  <div id="out">Checking…</div>
+  <script type="module">
+    import { validatePack } from "../js/validate-pack.js";
+    const out = document.getElementById("out");
+    out.textContent = "";
+    const line = (cls, text) => { const p = document.createElement("div"); p.className = cls; p.textContent = text; out.append(p); };
+    const heading = (text) => { const h = document.createElement("h2"); h.textContent = text; out.append(h); };
+    let errors = 0, warnings = 0;
+    try {
+      const index = await (await fetch("../data/packs/index.json", { cache: "no-cache" })).json();
+      const seen = new Set();
+      for (const file of index.packs) {
+        heading(file);
+        let pack;
+        try {
+          const res = await fetch("../data/packs/" + file, { cache: "no-cache" });
+          if (!res.ok) throw new Error("file not found (HTTP " + res.status + ")");
+          pack = JSON.parse(await res.text());
+        } catch (e) {
+          line("err", "ERROR: can't read this file — " + e.message + ". A missing comma or quote is the usual cause.");
+          errors++;
+          continue;
+        }
+        const r = validatePack(pack, seen);
+        r.errors.forEach((e) => line("err", "ERROR " + e));
+        r.warnings.forEach((w) => line("warn", "warning " + w));
+        if (!r.errors.length && !r.warnings.length) line("ok", `All good: ${pack.prompts.length} prompts.`);
+        errors += r.errors.length; warnings += r.warnings.length;
+      }
+      heading("Total");
+      line(errors ? "err" : "ok", `${errors} errors, ${warnings} warnings`);
+    } catch (e) {
+      line("err", "Couldn't load data/packs/index.json: " + e.message + " (are you using the local server?)");
+    }
+  </script>
+</body>
+</html>

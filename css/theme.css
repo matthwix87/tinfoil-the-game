@@ -1,0 +1,93 @@
+/* theme.css — colours and fonts in one place.
+   Light = crumpled kitchen foil + evidence board.
+   Dark  = the same board at 3am under a desk lamp.
+   Change a colour here and it changes everywhere. */
+
+:root {
+  /* Fonts */
+  --font-display: "Big Shoulders Stencil Display", Impact, "Arial Narrow Bold", sans-serif;
+  --font-body: "Courier Prime", "Courier New", ui-monospace, monospace;
+
+  /* Base palette (light) */
+  --bg: #d6dae0;            /* foil grey */
+  --bg-deep: #b9bfc8;
+  --card: #fbfbfa;          /* index card */
+  --card-edge: #c9ced6;
+  --ink: #161a22;           /* typewriter ink */
+  --ink-soft: #3f4653;      /* secondary text: 8:1 on card, 6:1 on bg */
+  --string: #b3122e;        /* red string / stamps */
+  --string-ink: #ffffff;
+  --highlighter: #f5e04a;   /* the gem */
+  --focus: #1f5fd1;
+
+  /* Tier colours. Always paired with an icon + name, never colour alone. */
+  --tier-mainstream: #7b8594;
+  --tier-rumor: #2a63c4;
+  --tier-coverup: #7239b8;
+  --tier-redacted: #161a22;
+  --tier-topsecret: #c0102c;
+  --tier-gem: #e8c400;
+
+  --foil: linear-gradient(115deg, #eef1f5 0%, #a8b0bb 18%, #f6f8fa 32%, #8e98a5 48%, #e3e7ec 62%, #a2abb6 80%, #f2f4f7 100%);
+  --shadow-card: 0 1px 0 rgba(22, 26, 34, .25), 0 6px 14px -8px rgba(22, 26, 34, .45);
+  /* Background foil creases and sheen */
+  --sheen: rgba(255, 255, 255, .35);
+  --sheen-2: rgba(255, 255, 255, .18);
+  --crease-dark: rgba(0, 0, 0, .05);
+  --crease-light: rgba(255, 255, 255, .12);
+  --radius-card: 3px;     /* paper is nearly square-cornered */
+  --radius-control: 10px; /* buttons and inputs are softer */
+}
+
+/* Dark theme values, used when the OS asks for dark (unless the player picked light)… */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12161d;
+    --bg-deep: #0b0e13;
+    --card: #1d232d;
+    --card-edge: #2c3542;
+    --ink: #e6e9ee;
+    --ink-soft: #a9b2bf;
+    --string: #ff5a6e;
+    --string-ink: #12161d;
+    --highlighter: #f5e04a;
+    --focus: #7fb0ff;
+    --tier-mainstream: #8f99a8;
+    --tier-rumor: #5b93f0;
+    --tier-coverup: #a678e8;
+    --tier-redacted: #000000;
+    --tier-topsecret: #ff4d63;
+    --tier-gem: #f5e04a;
+    --foil: linear-gradient(115deg, #3a424e 0%, #6b7583 18%, #2a313b 32%, #8a94a2 48%, #343c47 62%, #5d6774 80%, #2b323c 100%);
+    --shadow-card: 0 1px 0 rgba(0, 0, 0, .6), 0 8px 18px -10px rgba(0, 0, 0, .9);
+    --sheen: rgba(255, 255, 255, .05);
+    --sheen-2: rgba(255, 255, 255, .03);
+    --crease-dark: rgba(0, 0, 0, .25);
+    --crease-light: rgba(255, 255, 255, .025);
+  }
+}
+/* …or when the player picked dark in Settings. */
+:root[data-theme="dark"] {
+  --bg: #12161d;
+  --bg-deep: #0b0e13;
+  --card: #1d232d;
+  --card-edge: #2c3542;
+  --ink: #e6e9ee;
+  --ink-soft: #a9b2bf;
+  --string: #ff5a6e;
+  --string-ink: #12161d;
+  --highlighter: #f5e04a;
+  --focus: #7fb0ff;
+  --tier-mainstream: #8f99a8;
+  --tier-rumor: #5b93f0;
+  --tier-coverup: #a678e8;
+  --tier-redacted: #000000;
+  --tier-topsecret: #ff4d63;
+  --tier-gem: #f5e04a;
+  --foil: linear-gradient(115deg, #3a424e 0%, #6b7583 18%, #2a313b 32%, #8a94a2 48%, #343c47 62%, #5d6774 80%, #2b323c 100%);
+  --shadow-card: 0 1px 0 rgba(0, 0, 0, .6), 0 8px 18px -10px rgba(0, 0, 0, .9);
+  --sheen: rgba(255, 255, 255, .05);
+  --sheen-2: rgba(255, 255, 255, .03);
+  --crease-dark: rgba(0, 0, 0, .25);
+  --crease-light: rgba(255, 255, 255, .025);
+}

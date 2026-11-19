@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tinfoil tests</title>
+  <style>
+    body { font-family: ui-monospace, monospace; margin: 16px; background: #fff; color: #111; }
+    .ok { color: #106b2b; } .fail { color: #b3122e; font-weight: bold; }
+    #total { font-size: 1.3rem; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Tinfoil logic tests</h1>
+  <p>Runs the same tests as <code>node tests/run-tests.js</code>, in this browser.</p>
+  <ol id="out"></ol>
+  <p id="total">Running…</p>
+  <script type="module">
+    import { tests } from "./cases.js";
+    const out = document.getElementById("out");
+    let failed = 0;
+    for (const t of tests) {
+      const li = document.createElement("li");
+      try { t.fn(); li.className = "ok"; li.textContent = "ok — " + t.name; }
+      catch (e) { failed++; li.className = "fail"; li.textContent = "FAIL — " + t.name + ": " + e.message; }
+      out.append(li);
+    }
+    const total = document.getElementById("total");
+    total.textContent = `${tests.length - failed}/${tests.length} passed`;
+    total.className = failed ? "fail" : "ok";
+  </script>
+</body>
+</html>

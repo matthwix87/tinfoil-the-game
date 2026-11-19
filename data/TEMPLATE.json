@@ -1,0 +1,30 @@
+{
+  "id": "my-pack",
+  "name": "My New Pack",
+  "icon": "🎲",
+  "description": "One short sentence about what's in this pack.",
+  "reviewed": true,
+  "prompts": [
+    {
+      "id": "my-pack-first-prompt",
+      "text": "Name a thing that fits this category",
+      "difficulty": "easy",
+      "reviewed": true,
+      "answers": [
+        { "name": "Very Famous Answer", "aliases": ["famous"], "depth": 5 },
+        { "name": "Second Answer", "aliases": [], "depth": 12 },
+        { "name": "Third Answer", "aliases": [], "depth": 20 },
+        { "name": "Fourth Answer", "aliases": [], "depth": 30 },
+        { "name": "Fifth Answer", "aliases": [], "depth": 40 },
+        { "name": "Sixth Answer", "aliases": [], "depth": 50 },
+        { "name": "Seventh Answer", "aliases": [], "depth": 60 },
+        { "name": "Eighth Answer", "aliases": [], "depth": 70 },
+        { "name": "Ninth Answer", "aliases": [], "depth": 80 },
+        { "name": "Super Obscure Answer", "aliases": ["obscure"], "depth": 95 }
+      ],
+      "gem": "Super Obscure Answer",
+      "notAnswers": ["A Common Wrong Answer"],
+      "source": "Where you checked the facts, or any notes."
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <title>Tinfoil</title>
+  <meta name="description" content="Tinfoil: name the answers nobody else knows. A daily trivia dive with FNAF, Pokémon, geography and more.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Fonts: a stencil display face + a typewriter face. The game still works offline (falls back to system fonts). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@700;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap">
+
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/game.css">
+
+  <!-- Apply the saved theme before anything draws, so there's no flash. -->
+  <script>
+    try {
+      var s = JSON.parse(localStorage.getItem("tinfoil:settings") || "{}");
+      if (s.theme === "light" || s.theme === "dark") document.documentElement.dataset.theme = s.theme;
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to game</a>
+
+  <header class="topbar">
+    <a class="brand" href="#/" aria-label="Tinfoil home">
+      <svg class="brand-hat" viewBox="0 0 64 48" aria-hidden="true">
+        <defs>
+          <linearGradient id="foilGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f4f6f9"/>
+            <stop offset=".35" stop-color="#9aa3af"/>
+            <stop offset=".55" stop-color="#eef1f5"/>
+            <stop offset=".8" stop-color="#7d8794"/>
+            <stop offset="1" stop-color="#d7dce3"/>
+          </linearGradient>
+        </defs>
+        <path d="M32 3 L56 40 L8 40 Z" fill="url(#foilGrad)" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M20 22 L28 27 L24 31 L34 33 L31 38" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".55"/>
+        <path d="M2 42 Q32 50 62 42" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-word">Tinfoil</span>
+    </a>
+    <nav class="topnav" aria-label="Main">
+      <a href="#/daily" data-nav="daily">Daily</a>
+      <a href="#/packs" data-nav="packs">Packs</a>
+      <a href="#/stats" data-nav="stats">Stats</a>
+      <a href="#/settings" data-nav="settings" aria-label="Settings">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M19.4 13a7.5 7.5 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7.6 7.6 0 0 0-1.7-1L15 3.5h-4l-.4 2.5a7.6 7.6 0 0 0-1.7 1l-2.4-1-2 3.4 2 1.6a7.5 7.5 0 0 0 0 2l-2 1.6 2 3.4 2.4-1a7.6 7.6 0 0 0 1.7 1l.4 2.5h4l.4-2.5a7.6 7.6 0 0 0 1.7-1l2.4 1 2-3.4zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)"/></svg>
+      </a>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <p class="loading">Decrypting files…</p>
+    <noscript><p class="loading">Tinfoil needs JavaScript turned on.</p></noscript>
+  </main>
+
+  <!-- Polite announcements for screen readers (guess results etc.) -->
+  <div id="sr-live" class="sr-only" aria-live="polite"></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
